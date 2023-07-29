@@ -21,4 +21,27 @@ button.addEventListener('click', (event) => {
         description:description.value
     };
     console.log(persona)
+
+
+/////////////////////////////// DATOS ALMACENADOS EN FIREBASE //////////////////////////////////////
+
+    const createData = async() => {
+
+        const dataBase = await fetch("https://predesafiojs-default-rtdb.firebaseio.com/.json", { 
+            method: "POST",
+            headers: {
+                "Content-type": "application/json;charset=UTF-8"
+            },
+            body: JSON.stringify(persona),
+        });
+    }; 
+    createData() 
 });
+
+
+
+
+
+
+
+
