@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+    background: linear-gradient(90deg, rgba(25,50,69,1) 26%, rgba(38,83,118,1) 67%);
     margin: 0;
     padding: 20px;
     height: 150vh;
@@ -9,6 +9,7 @@ body {
   h1 {
     text-align: center;
     font-weight:700;
+    color: whitesmoke;
   }
   
   form {
@@ -16,8 +17,10 @@ body {
     margin: 0 auto;
     background-color: #fff;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 9px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    border: 3px solid #ffc200;
+  
   }
   
   label {
@@ -37,6 +40,9 @@ body {
     box-sizing: border-box;
     font-size: 16px;
     margin-bottom: 10px;
+    background-color: #5d7486;
+    
+    
   }
   
   input[type="radio"],
