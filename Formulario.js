@@ -22,22 +22,27 @@ button.addEventListener('click', (event) => {
     };
     console.log(persona)
 
+    createData(persona)
+    
+});
 
 /////////////////////////////// DATOS ALMACENADOS EN FIREBASE //////////////////////////////////////
 
-    const createData = async() => {
+const createData = async(persons) => {
 
-        const dataBase = await fetch("https://predesafiojs-default-rtdb.firebaseio.com/.json", { 
-            method: "POST",
-            headers: {
-                "Content-type": "application/json;charset=UTF-8"
-            },
-            body: JSON.stringify(persona),
-        });
-    }; 
-    createData() 
-});
+    const dataBase = await fetch("https://predesafiojs-default-rtdb.firebaseio.com/.json", { 
+        method: "POST",
+        headers: {
+            "Content-type": "application/json;charset=UTF-8"
+        },
+        body: JSON.stringify(persona),
+    });
+}; 
 
+// const consultarTodos = async() => {
+    
+//     pintarDom(ArrayTodod)
+// }
 
 
 
