@@ -26,8 +26,6 @@ button.addEventListener('click', (event) => {
 
     reciveData();
 
-    
-
 
 });
 
@@ -58,16 +56,53 @@ const reciveData = async() => {
         console.log(item[0]);
         const object = {
             id:item[0],
-            age:item[1].age,
-            name: item[1].name
+            birthdate:item[1].birthdate,
+            country: item[1].country,
+            description: item[1].description,
+            firstName: item[1].firstName,
+            gender: item[1].gender,
+            lastName: item[1].lastName,
         }
         return object;
     })
 
     console.log(infoCard);
     
+    infoCard.forEach(card =>{
+        cssCard(card);
+    })
+
 }; 
 reciveData();
+
+
+const cssCard = (perfil) => {
+    // Se estan creando los elementos
+    const container = document.createElement('div');
+    const info = document.createElement('div');
+    const name = document.createElement('h2');
+    
+
+    // se le agrega contenido a los elementos
+    
+    name.textContent = perfil.firstName + " " + perfil.lastName;
+
+
+    // se agregan clases a los elementos
+    container.className = 'container';
+    info.className = 'info';
+
+
+// Esta inyectando los elementos en el lugar correspondiente
+ 
+
+    container.appendChild(info);
+    info.appendChild(name);
+    
+
+    document.body.appendChild(container);
+};
+
 
 
 
