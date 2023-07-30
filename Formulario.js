@@ -2,7 +2,7 @@ const button = document.querySelector('#send');
 
 console.log(button)
 
-button.addEventListener('click', (event) => {
+button.addEventListener('click', async(event) => {
     event.preventDefault();    
 
     const firstName = document.querySelector('#firstName');
@@ -22,9 +22,9 @@ button.addEventListener('click', (event) => {
     };
     console.log(persona)
 
-    createData(persona)
+    await createData(persona)
 
-    reciveData();
+    await reciveData();
 
 
 });
@@ -67,38 +67,75 @@ const reciveData = async() => {
     })
 
     console.log(infoCard);
-    
-    infoCard.forEach(card =>{
-        cssCard(card);
-    })
+    cssCard(infoCard);
 
 }; 
 reciveData();
 
+const borraPersona = (hash) => {
+    console.log(id);
+}
 
-const cssCard = (perfil) => {
+const cssCard = (perfilArray) => {
     // Se estan creando los elementos
-    const container = document.createElement('div');
-    const info = document.createElement('div');
-    const name = document.createElement('h2');
-    
+    let container = document.querySelector("#principal")
+    // if(container){
+    //     let body = document.querySelector("body");
+    //     body.removeChild("#principal");
+            
+
+    // }
+
+    container = document.createElement('div');
+    container.id = "principal"
+    container.className = 'container';
 
     // se le agrega contenido a los elementos
+    perfilArray.forEach(perfil =>{
+
+
+        const exit = document.createElement('button');
+        exit.innerHTML = 'X';
+
+        const id = perfil.id;
+
+        exit.setAttribute("onclick","borraPersona( "+id+"')");
+
+
+
+        const tittle = document.createElement ("div");
+        tittle.className = "tittle";
+
+        const info = document.createElement('div');
+        info.className = 'info';
+
+        const name = document.createElement('h2');
+        const birthdate = document.createElement('h3');
+        const gender = document.createElement('h3');
+        const country = document.createElement('h3');
+        const description = document.createElement('h3');
+
+        name.textContent = perfil.firstName + " " + perfil.lastName;
+        birthdate.textContent = "Birthdate:" + " " + perfil.birthdate;
+        gender.textContent = "Gender:" + " " + perfil.gender;
+        country.textContent = "Country:" + " " + perfil.country;
+        description.textContent = "Description:" + " " + perfil.description;
+
+        container.appendChild(info);
+        info.appendChild(tittle);
+        info.appendChild(exit);
+        tittle.appendChild(name);
+        info.appendChild(birthdate);
+        info.appendChild(gender);
+        info.appendChild(country);
+        info.appendChild(description);
+
+
     
-    name.textContent = perfil.firstName + " " + perfil.lastName;
+    });
 
-
-    // se agregan clases a los elementos
-    container.className = 'container';
-    info.className = 'info';
-
-
-// Esta inyectando los elementos en el lugar correspondiente
- 
-
-    container.appendChild(info);
-    info.appendChild(name);
     
+
 
     document.body.appendChild(container);
 };
