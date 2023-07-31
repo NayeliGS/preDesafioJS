@@ -72,6 +72,8 @@ const reciveData = async() => {
 }; 
 reciveData();
 
+
+
 const borraPersona = async(hash) => {
 
     console.log(hash);
@@ -86,6 +88,8 @@ const borraPersona = async(hash) => {
 
     await reciveData();
 }
+
+
 
 const cssCard = (perfilArray) => {
     
@@ -142,12 +146,7 @@ const cssCard = (perfilArray) => {
         info.appendChild(country);
         info.appendChild(description);
 
-
-    
     });
-
-    
-
 
     document.body.appendChild(container);
 };

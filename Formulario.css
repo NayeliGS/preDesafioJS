@@ -19,7 +19,7 @@ body {
     padding: 20px;
     border-radius: 9px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    border: 4px solid #ffc200;
+    border: 7px solid #ffc200;
   
   }
   
@@ -41,6 +41,7 @@ body {
     font-size: 16px;
     margin-bottom: 10px;
     background-color: #5d7486;
+    color:aliceblue;
     
     
   }
@@ -86,16 +87,18 @@ body {
   }
 
   .info{
-    width: 370px;
-    height: 300px;
+    width: 340px;
+    height: 290px;
     border-radius: 9px;
-    box-shadow: 0 20px 20px #ffc200;
+    box-shadow: 0 10px 10px 1px #ffc200;
     padding-left: 16px;
+    color: lavender;
   }
 
   .exit{
     background-color:red;
     width: 40px;
+    border-radius: 9px;
 
   }
 
