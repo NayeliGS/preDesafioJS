@@ -72,25 +72,32 @@ const reciveData = async() => {
 }; 
 reciveData();
 
-const borraPersona = (hash) => {
-    console.log(id);
+const borraPersona = async(hash) => {
+
+    console.log(hash);
+    const response = await fetch(`https://predesafiojs-default-rtdb.firebaseio.com/${hash}.json`,{
+        method:'DELETE',
+        
+    });
+
+    const data = await response.json();
+
+    console.log(data);
+
+    await reciveData();
 }
 
 const cssCard = (perfilArray) => {
-    // Se estan creando los elementos
+    
     let container = document.querySelector("#principal")
-    // if(container){
-    //     let body = document.querySelector("body");
-    //     body.removeChild("#principal");
-            
-
-    // }
+    if(container){
+        container.remove();
+    }
 
     container = document.createElement('div');
     container.id = "principal"
     container.className = 'container';
 
-    // se le agrega contenido a los elementos
     perfilArray.forEach(perfil =>{
 
 
@@ -99,10 +106,14 @@ const cssCard = (perfilArray) => {
 
         const id = perfil.id;
 
-        exit.setAttribute("onclick","borraPersona( "+id+"')");
+        exit.setAttribute("onclick","borraPersona('"+id+"')");
+        exit.setAttribute("className","bottonRed");
+        exit.className = "exit";
 
 
-
+        const buttonexit = document.createElement ("div");
+        buttonexit.className = "buttonexit";
+        
         const tittle = document.createElement ("div");
         tittle.className = "tittle";
 
@@ -110,10 +121,10 @@ const cssCard = (perfilArray) => {
         info.className = 'info';
 
         const name = document.createElement('h2');
-        const birthdate = document.createElement('h3');
-        const gender = document.createElement('h3');
-        const country = document.createElement('h3');
-        const description = document.createElement('h3');
+        const birthdate = document.createElement('h4');
+        const gender = document.createElement('h4');
+        const country = document.createElement('h4');
+        const description = document.createElement('h4');
 
         name.textContent = perfil.firstName + " " + perfil.lastName;
         birthdate.textContent = "Birthdate:" + " " + perfil.birthdate;
@@ -122,8 +133,9 @@ const cssCard = (perfilArray) => {
         description.textContent = "Description:" + " " + perfil.description;
 
         container.appendChild(info);
+        info.appendChild(buttonexit);
+        buttonexit.appendChild(exit);
         info.appendChild(tittle);
-        info.appendChild(exit);
         tittle.appendChild(name);
         info.appendChild(birthdate);
         info.appendChild(gender);
