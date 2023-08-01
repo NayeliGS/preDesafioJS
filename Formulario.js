@@ -1,9 +1,8 @@
 const button = document.querySelector('#send');
 
 console.log(button)
-
 button.addEventListener('click', async(event) => {
-    event.preventDefault();    
+    event.preventDefault();
 
     const firstName = document.querySelector('#firstName');
     const lastName = document.querySelector('#lastName');
@@ -11,7 +10,7 @@ button.addEventListener('click', async(event) => {
     const gender = document.querySelector('input[name="gender"]:checked');
     const country = document.querySelector('#country');
     const description = document.querySelector('#description');
-
+    
       const persona = {
         firstName: firstName.value,
         lastName:lastName.value,
@@ -22,14 +21,10 @@ button.addEventListener('click', async(event) => {
     };
     console.log(persona)
 
-    await createData(persona)
-
+   await createData(persona);  
     await reciveData();
 
-
-});
-
-
+})
 const createData = async(persons) => {
    
     const dataBase = await fetch("https://predesafiojs-default-rtdb.firebaseio.com/.json", { 
@@ -39,9 +34,7 @@ const createData = async(persons) => {
         },
         body: JSON.stringify(persons),
     });
-}; 
-
-
+};
 
 const reciveData = async() => {
 
@@ -68,11 +61,8 @@ const reciveData = async() => {
 
     console.log(infoCard);
     cssCard(infoCard);
-
 }; 
 reciveData();
-
-
 
 const borraPersona = async(hash) => {
 
@@ -82,13 +72,15 @@ const borraPersona = async(hash) => {
         
     });
 
-    const data = await response.json();
-
+    const data = await response.json();  
     console.log(data);
 
     await reciveData();
 }
-
+const editarPersona = async(hash) => {
+    let urlPathEditar = `./FormularioEditar.html?${hash}`;
+    window.location.href = urlPathEditar;
+}
 
 
 const cssCard = (perfilArray) => {
@@ -102,25 +94,34 @@ const cssCard = (perfilArray) => {
     container.id = "principal"
     container.className = 'container';
 
+
     perfilArray.forEach(perfil =>{
 
-
+        //Remove btn
         const exit = document.createElement('button');
         exit.innerHTML = 'X';
-
         const id = perfil.id;
 
         exit.setAttribute("onclick","borraPersona('"+id+"')");
         exit.setAttribute("className","bottonRed");
         exit.className = "exit";
 
-
         const buttonexit = document.createElement ("div");
         buttonexit.className = "buttonexit";
         
         const tittle = document.createElement ("div");
         tittle.className = "tittle";
+        //BTN EDIT
+        const buttonEdit = document.createElement ("div");
+        const editar = document.createElement('button');
+        editar.innerHTML = 'Editar';
 
+        const idEditar = perfil.id;
+
+        editar.setAttribute("onclick","editarPersona('"+idEditar+"')");
+        editar.setAttribute("className","bottonRed");
+        editar.className = "editar";
+        //
         const info = document.createElement('div');
         info.className = 'info';
 
@@ -130,11 +131,13 @@ const cssCard = (perfilArray) => {
         const country = document.createElement('h4');
         const description = document.createElement('h4');
 
+
         name.textContent = perfil.firstName + " " + perfil.lastName;
         birthdate.textContent = "Birthdate:" + " " + perfil.birthdate;
         gender.textContent = "Gender:" + " " + perfil.gender;
         country.textContent = "Country:" + " " + perfil.country;
         description.textContent = "Description:" + " " + perfil.description;
+
 
         container.appendChild(info);
         info.appendChild(buttonexit);
@@ -145,12 +148,12 @@ const cssCard = (perfilArray) => {
         info.appendChild(gender);
         info.appendChild(country);
         info.appendChild(description);
-
+        info.appendChild(buttonEdit); //div para boton editar
+        buttonEdit.appendChild(editar); // Agregamos el boton a div
     });
 
     document.body.appendChild(container);
 };
-
 
 
 

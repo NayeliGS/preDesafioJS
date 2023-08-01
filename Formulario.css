@@ -88,7 +88,7 @@ body {
 
   .info{
     width: 340px;
-    height: 290px;
+    height: 330px;
     border-radius: 9px;
     box-shadow: 0 10px 10px 1px #ffc200;
     padding-left: 16px;
@@ -98,6 +98,12 @@ body {
   .exit{
     background-color:red;
     width: 40px;
+    border-radius: 9px;
+
+  }
+  .editar{
+    background-color:rgb(255, 0, 212);
+    width: 80px;
     border-radius: 9px;
 
   }
@@ -113,6 +119,7 @@ body {
     justify-content: end;
     
   }
+
 
   
 
