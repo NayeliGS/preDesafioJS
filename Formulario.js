@@ -4,6 +4,7 @@ console.log(button)
 button.addEventListener('click', async(event) => {
     event.preventDefault();
 
+    const urlImg = document.querySelector('#urlImg');
     const firstName = document.querySelector('#firstName');
     const lastName = document.querySelector('#lastName');
     const birthdate = document.querySelector('#birthdate');
@@ -17,7 +18,8 @@ button.addEventListener('click', async(event) => {
         birthdate:birthdate.value,
         gender:gender.value,
         country:country.value,
-        description:description.value
+        description:description.value,
+        urlImg: urlImg.value,
     };
     console.log(persona)
 
@@ -55,6 +57,7 @@ const reciveData = async() => {
             firstName: item[1].firstName,
             gender: item[1].gender,
             lastName: item[1].lastName,
+            urlImg: item[1].urlImg,
         }
         return object;
     })
@@ -124,7 +127,16 @@ const cssCard = (perfilArray) => {
         //
         const info = document.createElement('div');
         info.className = 'info';
+        // tag pool
+        const cardInfoContainer = document.createElement('div')
+        cardInfoContainer.setAttribute('class', 'card-info-container');
 
+        //
+        
+        const img = document.createElement('img');
+            img.setAttribute('class', 'img-card');
+            img.setAttribute('src', perfil.urlImg);
+            console.log(perfil)
         const name = document.createElement('h2');
         const birthdate = document.createElement('h4');
         const gender = document.createElement('h4');
@@ -139,22 +151,25 @@ const cssCard = (perfilArray) => {
         description.textContent = "Description:" + " " + perfil.description;
 
 
+        //General container
         container.appendChild(info);
-        info.appendChild(buttonexit);
-        buttonexit.appendChild(exit);
-        info.appendChild(tittle);
-        tittle.appendChild(name);
-        info.appendChild(birthdate);
-        info.appendChild(gender);
-        info.appendChild(country);
-        info.appendChild(description);
-        info.appendChild(buttonEdit); //div para boton editar
-        buttonEdit.appendChild(editar); // Agregamos el boton a div
+        //Sub container
+        info.appendChild(img)
+        info.appendChild(cardInfoContainer);
+        //
+        cardInfoContainer.appendChild(buttonexit);
+        cardInfoContainer.appendChild(tittle);
+        cardInfoContainer.appendChild(name);
+        cardInfoContainer.appendChild(birthdate);
+        cardInfoContainer.appendChild(gender);
+        cardInfoContainer.appendChild(country);
+        cardInfoContainer.appendChild(description);
+            buttonexit.appendChild(exit);
+            info.appendChild(buttonEdit); //div para boton editar
+            buttonexit.appendChild(editar); // Agregamos el boton a div
     });
 
     document.body.appendChild(container);
 };
-
-
 
 
